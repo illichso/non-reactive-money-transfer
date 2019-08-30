@@ -34,9 +34,14 @@ public class UserRepositoryJPA implements UserRepository {
     }
 
     public void deleteAll() {
+        entityManager.getTransaction().begin();
+
         Query query = entityManager.createQuery(
                 "DELETE FROM User u");
         query.executeUpdate();
+
+        entityManager.getTransaction().commit();
+
     }
 
     public List<User> findAll() {

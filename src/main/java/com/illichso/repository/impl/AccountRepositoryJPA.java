@@ -34,9 +34,11 @@ public class AccountRepositoryJPA implements AccountRepository {
     }
 
     public void deleteAll() {
+        entityManager.getTransaction().begin();
         Query query = entityManager.createQuery(
                 "DELETE FROM Account");
         query.executeUpdate();
+        entityManager.getTransaction().commit();
     }
 
     public List<Account> findAll() {

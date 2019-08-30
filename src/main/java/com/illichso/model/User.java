@@ -1,11 +1,6 @@
 package com.illichso.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,18 +12,16 @@ import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
-import static lombok.AccessLevel.NONE;
 
 @Entity
-@Getter
-@Setter
-@ToString(exclude = {"accounts"})
-@EqualsAndHashCode(exclude = {"accounts"})
-@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString(exclude = {"accounts"})
+//@EqualsAndHashCode(exclude = {"accounts"})
+//@NoArgsConstructor
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = AUTO)
-    @Setter(NONE)
     private long id;
 
     private String name;
@@ -37,6 +30,8 @@ public class User implements Serializable {
     @JsonIgnore
     private Set<Account> accounts;
 
+    public User() {
+    }
 
     public User(String name) {
         this.name = name;
@@ -47,4 +42,39 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        return name != null ? name.equals(user.name) : user.name == null;
+    }
+
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 }

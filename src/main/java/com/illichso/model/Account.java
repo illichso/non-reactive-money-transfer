@@ -1,11 +1,6 @@
 package com.illichso.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,18 +12,11 @@ import java.math.BigDecimal;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
-import static lombok.AccessLevel.NONE;
 
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode(exclude = {"user"})
-@ToString(exclude = {"user"})
-@NoArgsConstructor
 public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = AUTO)
-    @Setter(NONE)
     private long id;
 
     private String number;
@@ -48,5 +36,51 @@ public class Account implements Serializable {
     public Account(String number, User user) {
         this.number = number;
         this.user = user;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        if (id != account.id) return false;
+        if (number != null ? !number.equals(account.number) : account.number != null) return false;
+        return amount != null ? amount.equals(account.amount) : account.amount == null;
+    }
+
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (amount != null ? amount.hashCode() : 0);
+        return result;
     }
 }

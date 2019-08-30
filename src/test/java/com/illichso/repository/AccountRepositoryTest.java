@@ -6,10 +6,8 @@ import com.illichso.repository.impl.AccountRepositoryJPA;
 import com.illichso.repository.impl.UserRepositoryJPA;
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static com.illichso.repository.TestDBUtil.getEntityManager;
@@ -49,15 +47,13 @@ public class AccountRepositoryTest {
     }
 
     @Test
-    @Transactional
-    @Ignore
     public void testDeleteAll() throws Exception {
         accountRepository.deleteAll();
         List<Account> foundAccountList = accountRepository.findAll();
         assertThat(foundAccountList.size()).isEqualTo(0);
     }
 
-//    @After
+    @After
     public void cleanup() {
         accountRepository.deleteAll();
         userRepository.deleteAll();
