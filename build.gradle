@@ -47,12 +47,7 @@ dependencies {
 }
 
 jar {
-//    getArchiveBaseName = 'money-transfer'
     manifest {
-        attributes(
-//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'com.illichso.Application'
-        )
+        attributes 'Main-Class': 'com.illichso.Application'
     }
 }
