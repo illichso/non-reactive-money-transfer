@@ -3,6 +3,7 @@ package com.illichso.repository.impl;
 import com.illichso.model.User;
 import com.illichso.repository.UserRepository;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -14,15 +15,16 @@ public class UserRepositoryJPA implements UserRepository {
 
     private EntityManager entityManager;
 
+    @Inject
     public UserRepositoryJPA(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public long save(User user) {
+    public User save(User user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
         entityManager.getTransaction().commit();
-        return user.getId();
+        return user;
     }
 
     public User findOne(int userId) {

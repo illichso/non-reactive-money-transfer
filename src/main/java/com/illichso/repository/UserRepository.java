@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserRepository {
 
-    long save(User user);
+    User save(User user);
 
     User findOne(int userId);
 

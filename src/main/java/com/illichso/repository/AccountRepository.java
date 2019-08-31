@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AccountRepository {
 
-    long save(Account account);
+    Account save(Account account);
 
     Account findOne(int userId);
 

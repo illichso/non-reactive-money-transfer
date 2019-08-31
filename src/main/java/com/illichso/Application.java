@@ -1,6 +1,13 @@
 package com.illichso;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.illichso.configuration.InjectionModule;
+import com.illichso.repository.impl.AccountRepositoryJPA;
+import com.illichso.repository.impl.UserRepositoryJPA;
 import com.illichso.rest.AccountController;
+import com.illichso.service.impl.AccountServiceImpl;
+import com.illichso.service.impl.UserServiceImpl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -9,13 +16,23 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 public class Application {
     public static void main(String[] args) throws Exception {
-        launchServer1();
+        initInjections();
+        launchServer();
 
 //        launchServer2();
 //        launchServer3();
     }
 
-    private static void launchServer1() throws Exception {
+    private static void initInjections() {
+        Injector injector = Guice.createInjector(new InjectionModule());
+        AccountRepositoryJPA accountRepository = injector.getInstance(AccountRepositoryJPA.class);
+        UserRepositoryJPA userRepository = injector.getInstance(UserRepositoryJPA.class);
+
+        AccountServiceImpl accountService = injector.getInstance(AccountServiceImpl.class);
+        UserServiceImpl userService = injector.getInstance(UserServiceImpl.class);
+    }
+
+    private static void launchServer() throws Exception {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
 
