@@ -14,11 +14,6 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
-//@Getter
-//@Setter
-//@ToString(exclude = {"accounts"})
-//@EqualsAndHashCode(exclude = {"accounts"})
-//@NoArgsConstructor
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = AUTO)
