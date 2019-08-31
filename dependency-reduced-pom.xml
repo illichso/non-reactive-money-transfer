@@ -44,7 +44,7 @@
                 <transformer />
                 <transformer>
                   <manifestEntries>
-                    <Main-Class>com.rest.test.App</Main-Class>
+                    <Main-Class>com.illichso.Application</Main-Class>
                   </manifestEntries>
                 </transformer>
               </transformers>
@@ -81,7 +81,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.6.2</version>
+      <version>3.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -98,10 +98,10 @@
     </dependency>
   </dependencies>
   <properties>
-    <hibernate.version>5.2.10.Final</hibernate.version>
-    <jersey.version>2.25.1</jersey.version>
+    <hibernate.version>5.4.4.Final</hibernate.version>
+    <jersey.version>2.29</jersey.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty.version>9.4.4.v20170414</jetty.version>
+    <jetty.version>9.4.20.v20190813</jetty.version>
   </properties>
 </project>
 

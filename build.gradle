@@ -1,10 +1,19 @@
-apply plugin: 'java'
-apply plugin: 'maven'
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'java'
+    id 'maven'
+    id 'project-report'
+}
+//apply plugin: 'shadow'
+//apply plugin: 'java'
+//apply plugin: 'maven'
+//apply plugin: 'project-report'
+//apply plugin: 'project-report'
 
 group = 'illich.so'
 version = '1.0.0'
 
-description = "non-reactive-money-transfer"
+description = "code-challenge"
 
 sourceCompatibility = 1.12
 targetCompatibility = 1.12
@@ -19,22 +28,37 @@ repositories {
     maven { url "http://maven.apache.org" }
     maven { url "http://repo.maven.apache.org/maven2" }
 }
-dependencies {
 
-    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.20.v20190813'
-    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.20.v20190813'
-    compile group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.4.20.v20190813'
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.25.1'
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.25.1'
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: '2.25.1'
-    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.25.1'
-    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
-    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
-    compile(group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.10.Final') {
-        exclude(module: 'hibernate-jpa-2.1-api')
+ext {
+    jettyVersion = '9.4.20.v20190813'
+    jerseyVersion = '2.29'
+    hibernateVersion = '5.4.4.Final'
+}
+
+dependencies {
+//    compile "org.eclipse.jetty:jetty-server:$jettyVersion"
+    compile "org.eclipse.jetty:jetty-servlet:$jettyVersion"
+//    compile "org.eclipse.jetty:jetty-util:$jettyVersion"
+
+//    compile group: 'io.dropwizard.metrics', name: 'metrics-servlets', version: '4.1.0'
+
+
+//    compile "org.glassfish.jersey.core:jersey-server:$jerseyVersion"
+    compile "org.glassfish.jersey.containers:jersey-container-servlet-core:$jerseyVersion"
+    compile "org.glassfish.jersey.containers:jersey-container-jetty-http:$jerseyVersion"
+    compile "org.glassfish.jersey.media:jersey-media-moxy:$jerseyVersion"
+    compile ("org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"){
+        exclude group: "org.javassist", module: "javassist"
     }
-    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.4.4.Final'
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.4.Final'
+
+
+//    compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+//    compile "org.hibernate:hibernate-c3p0:$hibernateVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
+
+//    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+//    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.9'
     runtime group: 'com.h2database', name: 'h2', version: '1.4.199'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
@@ -46,8 +70,22 @@ dependencies {
     compile group: 'javax.activation', name: 'activation', version: '1.1.1'
 }
 
+////create a single Jar with all dependencies
+//task fatJar(type: Jar) {
+//    manifest {
+//        attributes 'Implementation-Title': 'Gradle Jar File Example',
+//                'Main-Class': 'com.illichso.Application'
+//    }
+//    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+//    with jar
+//}
+
+
 jar {
     manifest {
         attributes 'Main-Class': 'com.illichso.Application'
     }
 }
+
+
+
