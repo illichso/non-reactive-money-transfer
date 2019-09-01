@@ -48,10 +48,6 @@ public class Application {
         }
     }
 
-
-
-
-
     private static void launchServer3() throws Exception {
         Server server = new Server(8080);
         ServletContextHandler context = new ServletContextHandler(SESSIONS);
@@ -69,7 +65,6 @@ public class Application {
         }
 
     }
-
 
 
     private static void launchServer2() throws Exception {
