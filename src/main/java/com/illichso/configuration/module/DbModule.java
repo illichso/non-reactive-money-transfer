@@ -20,9 +20,9 @@ public class DbModule extends AbstractModule {
 
     @Provides @Singleton
     public EntityManagerFactory provideEntityManagerFactory() {
-        Map<String, String> properties = new HashMap<String, String>();
+        Map<String, String> properties = new HashMap<>();
         properties.put("hibernate.connection.driver_class", "org.h2.Driver");
-        properties.put("hibernate.connection.url", "jdbc:h2:test");
+        properties.put("hibernate.connection.url", "jdbc:h2:mem:illichso");
         properties.put("hibernate.connection.username", "sa");
         properties.put("hibernate.connection.password", "");
         properties.put("hibernate.connection.pool_size", "1");
