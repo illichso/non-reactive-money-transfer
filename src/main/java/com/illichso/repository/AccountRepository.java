@@ -1,6 +1,6 @@
 package com.illichso.repository;
 
-import com.illichso.model.Account;
+import com.illichso.model.entity.Account;
 
 import java.util.List;
 

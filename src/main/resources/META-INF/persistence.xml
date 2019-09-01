@@ -8,8 +8,8 @@
 
 
         <!-- add classes -->
-        <class>com.illichso.model.Account</class>
-        <class>com.illichso.model.User</class>
+        <class>com.illichso.model.entity.Account</class>
+        <class>com.illichso.model.entity.User</class>
 
         <properties>
           <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>

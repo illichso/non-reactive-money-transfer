@@ -1,4 +1,4 @@
-package com.illichso.model;
+package com.illichso.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

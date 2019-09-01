@@ -1,6 +1,6 @@
 package com.illichso.service;
 
-import com.illichso.model.Account;
+import com.illichso.model.entity.Account;
 
 public interface AccountService {
 

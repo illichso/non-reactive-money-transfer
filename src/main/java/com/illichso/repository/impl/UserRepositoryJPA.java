@@ -1,6 +1,6 @@
 package com.illichso.repository.impl;
 
-import com.illichso.model.User;
+import com.illichso.model.entity.User;
 import com.illichso.repository.UserRepository;
 
 import javax.inject.Inject;

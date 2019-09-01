@@ -6,8 +6,8 @@
     <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
 
         <!-- add classes -->
-        <class>com.illichso.model.User</class>
-        <class>com.illichso.model.Account</class>
+        <class>com.illichso.model.entity.User</class>
+        <class>com.illichso.model.entity.Account</class>
 
         <properties>
             <!-- Configuring JDBC properties -->

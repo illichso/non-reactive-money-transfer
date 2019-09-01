@@ -1,6 +1,6 @@
 package com.illichso.repository;
 
-import com.illichso.model.User;
+import com.illichso.model.entity.User;
 import com.illichso.repository.impl.UserRepositoryJPA;
 import org.junit.After;
 import org.junit.Before;

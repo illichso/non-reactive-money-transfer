@@ -1,6 +1,6 @@
 package com.illichso.service.impl;
 
-import com.illichso.model.User;
+import com.illichso.model.entity.User;
 import com.illichso.repository.UserRepository;
 import com.illichso.service.UserService;
 

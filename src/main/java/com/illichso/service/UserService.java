@@ -1,6 +1,6 @@
 package com.illichso.service;
 
-import com.illichso.model.User;
+import com.illichso.model.entity.User;
 
 public interface UserService {
 

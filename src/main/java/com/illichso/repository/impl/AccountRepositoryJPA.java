@@ -1,6 +1,6 @@
 package com.illichso.repository.impl;
 
-import com.illichso.model.Account;
+import com.illichso.model.entity.Account;
 import com.illichso.repository.AccountRepository;
 
 import javax.inject.Inject;
