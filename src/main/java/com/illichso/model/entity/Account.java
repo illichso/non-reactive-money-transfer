@@ -28,6 +28,9 @@ public class Account implements Serializable {
     @JsonIgnore
     private User user;
 
+    public Account() {
+    }
+
     public Account(long id, String number) {
         this.id = id;
         this.number = number;
