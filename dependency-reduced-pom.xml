@@ -98,10 +98,13 @@
     </dependency>
   </dependencies>
   <properties>
+    <guice.version>4.2.2</guice.version>
     <hibernate.version>5.4.4.Final</hibernate.version>
+    <dep.jackson>2.9.9</dep.jackson>
     <jersey.version>2.29</jersey.version>
+    <dep.jersey>1.19.4</dep.jersey>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty.version>9.4.20.v20190813</jetty.version>
+    <dep.jetty>9.4.20.v20190813</dep.jetty>
   </properties>
 </project>
 
