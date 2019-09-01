@@ -4,6 +4,6 @@ import com.illichso.model.entity.User;
 
 public interface UserService {
 
-    User createUser(String userName);
+    void saveUser(User user);
 
 }
