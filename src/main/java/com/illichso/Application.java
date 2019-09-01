@@ -3,12 +3,14 @@ package com.illichso;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.illichso.configuration.InjectionModule;
-import com.illichso.rest.AccountController;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+
+import static org.eclipse.jetty.servlet.ServletContextHandler.SESSIONS;
+import static org.glassfish.jersey.server.ServerProperties.PROVIDER_PACKAGES;
 
 public class Application {
     public static void main(String[] args) throws Exception {
@@ -29,18 +31,15 @@ public class Application {
     }
 
     private static void launchServer() throws Exception {
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        ServletContextHandler context = new ServletContextHandler(SESSIONS);
         context.setContextPath("/");
+
+        ServletHolder jerseyServlet = context.addServlet(ServletContainer.class, "/*");
+        jerseyServlet.setInitParameter(PROVIDER_PACKAGES, "com.illichso.rest");
+        jerseyServlet.setInitOrder(0);
 
         Server jettyServer = new Server(8080);
         jettyServer.setHandler(context);
-
-        ServletHolder jerseyServlet = context.addServlet(ServletContainer.class, "/*");
-        jerseyServlet.setInitOrder(0);
-
-        // Tells the Jersey Servlet which REST service/class to load.
-        jerseyServlet.setInitParameter("jersey.config.server.provider.classnames", AccountController.class.getCanonicalName());
-
         try {
             jettyServer.start();
             jettyServer.join();
@@ -55,7 +54,7 @@ public class Application {
 
     private static void launchServer3() throws Exception {
         Server server = new Server(8080);
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        ServletContextHandler context = new ServletContextHandler(SESSIONS);
         context.setContextPath("/");
         server.setHandler(context);
 //        ServerConnector connector = new ServerConnector(server);
