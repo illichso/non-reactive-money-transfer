@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import java.util.List;
+
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 
@@ -34,6 +36,13 @@ public class UserController {
     @Path("create")
     public Response createUser(String username) {
         User user = userService.saveUser(username);
-        return Response.status(201).entity(user).build();
+        return Response.status(200).entity(user).build();
+    }
+
+    @GET
+    @Path("users")
+    public Response getAllUsers() {
+        List<User> allUsers = userService.getAllUsers();
+        return Response.status(200).entity(allUsers).build();
     }
 }
