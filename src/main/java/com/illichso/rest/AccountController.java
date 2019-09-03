@@ -1,10 +1,9 @@
 package com.illichso.rest;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import com.illichso.service.AccountService;
+
+import javax.inject.Inject;
+import javax.ws.rs.*;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
@@ -13,6 +12,12 @@ import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
 public class AccountController {
+    private final AccountService accountService;
+
+    @Inject
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @GET
     @Path("test")

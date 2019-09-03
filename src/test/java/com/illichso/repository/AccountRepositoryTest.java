@@ -1,5 +1,6 @@
 package com.illichso.repository;
 
+/*
 import com.illichso.model.entity.Account;
 import com.illichso.model.entity.User;
 import com.illichso.repository.impl.AccountRepositoryJPA;
@@ -59,3 +60,4 @@ public class AccountRepositoryTest {
         userRepository.deleteAll();
     }
 }
+*/

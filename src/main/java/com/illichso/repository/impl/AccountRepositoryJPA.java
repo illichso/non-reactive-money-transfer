@@ -1,5 +1,6 @@
 package com.illichso.repository.impl;
 
+import com.google.inject.Provider;
 import com.illichso.model.entity.Account;
 import com.illichso.repository.AccountRepository;
 
@@ -13,22 +14,20 @@ import java.util.List;
 @Transactional(value = Transactional.TxType.REQUIRES_NEW)
 public class AccountRepositoryJPA implements AccountRepository {
 
-    private EntityManager entityManager;
-
     @Inject
-    public AccountRepositoryJPA(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    private Provider<EntityManager> entityManager;
 
+    public AccountRepositoryJPA() {
+    }
     public Account save(Account account) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(account);
-        entityManager.getTransaction().commit();
+        entityManager.get().getTransaction().begin();
+        entityManager.get().persist(account);
+        entityManager.get().getTransaction().commit();
         return account;
     }
 
     public Account findOne(int accountId) {
-        TypedQuery<Account> query = entityManager.createQuery(
+        TypedQuery<Account> query = entityManager.get().createQuery(
                 "SELECT u FROM Account u WHERE u.id = :accountId",
                 Account.class);
         query.setParameter("accountId", accountId);
@@ -36,15 +35,15 @@ public class AccountRepositoryJPA implements AccountRepository {
     }
 
     public void deleteAll() {
-        entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery(
+        entityManager.get().getTransaction().begin();
+        Query query = entityManager.get().createQuery(
                 "DELETE FROM Account");
         query.executeUpdate();
-        entityManager.getTransaction().commit();
+        entityManager.get().getTransaction().commit();
     }
 
     public List<Account> findAll() {
-        TypedQuery<Account> query = entityManager.createQuery(
+        TypedQuery<Account> query = entityManager.get().createQuery(
                 "SELECT u FROM Account u",
                 Account.class);
         return query.getResultList();

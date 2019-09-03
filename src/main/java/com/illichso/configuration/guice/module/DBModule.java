@@ -1,4 +1,4 @@
-package com.illichso.configuration;
+package com.illichso.configuration.guice.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InjectionModule extends AbstractModule {
+public class DBModule extends AbstractModule {
     private static final ThreadLocal<EntityManager> ENTITY_MANAGER_CACHE = new ThreadLocal<EntityManager>();
 
     @Provides

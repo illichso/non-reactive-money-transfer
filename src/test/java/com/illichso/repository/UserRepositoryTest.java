@@ -1,5 +1,6 @@
 package com.illichso.repository;
 
+/*
 import com.illichso.model.entity.User;
 import com.illichso.repository.impl.UserRepositoryJPA;
 import org.junit.After;
@@ -52,3 +53,4 @@ public class UserRepositoryTest {
         userRepository.deleteAll();
     }
 }
+*/

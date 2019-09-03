@@ -7,7 +7,6 @@ import com.illichso.service.AccountService;
 import javax.inject.Inject;
 
 public class AccountServiceImpl implements AccountService {
-
     private final AccountRepository accountRepository;
 
     @Inject

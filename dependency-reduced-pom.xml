@@ -25,7 +25,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.illichso.Application</mainClass>
+              <mainClass>com.illichso.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -44,7 +44,7 @@
                 <transformer />
                 <transformer>
                   <manifestEntries>
-                    <Main-Class>com.illichso.Application</Main-Class>
+                    <Main-Class>com.illichso.Main</Main-Class>
                   </manifestEntries>
                 </transformer>
               </transformers>
