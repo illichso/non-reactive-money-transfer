@@ -1,17 +1,20 @@
 package com.illichso.rest;
 
 import com.illichso.model.entity.User;
-import com.illichso.service.AccountService;
 import com.illichso.service.UserService;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
+import static javax.ws.rs.core.Response.status;
 
 @Path("/user")
 @Consumes(APPLICATION_JSON)
@@ -36,13 +39,13 @@ public class UserController {
     @Path("create")
     public Response createUser(String username) {
         User user = userService.saveUser(username);
-        return Response.status(200).entity(user).build();
+        return status(Response.Status.CREATED).entity(user).build();
     }
 
     @GET
-    @Path("users")
+    @Path("all")
     public Response getAllUsers() {
         List<User> allUsers = userService.getAllUsers();
-        return Response.status(200).entity(allUsers).build();
+        return status(Response.Status.OK).entity(allUsers).build();
     }
 }

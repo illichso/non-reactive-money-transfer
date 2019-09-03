@@ -98,10 +98,12 @@
     </dependency>
   </dependencies>
   <properties>
+    <guice.version>4.2.2</guice.version>
     <hibernate.version>5.4.4.Final</hibernate.version>
     <jersey.version>2.29</jersey.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty.version>9.4.20.v20190813</jetty.version>
+    <jackson-annotations.version>2.9.9</jackson-annotations.version>
   </properties>
 </project>
 

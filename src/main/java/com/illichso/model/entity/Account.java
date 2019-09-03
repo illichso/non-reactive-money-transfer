@@ -1,6 +1,7 @@
 package com.illichso.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,8 +9,10 @@ import java.math.BigDecimal;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 
 @Entity
+@Data
 public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -37,32 +40,18 @@ public class Account implements Serializable {
         this.user = user;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
+    public Account(User user) {
         this.user = user;
+        generateAccountNumber();
+        setDefaultAmount();
+    }
+
+    private void setDefaultAmount() {
+        amount = BigDecimal.ZERO;
+    }
+
+    private void generateAccountNumber() {
+        number = randomAlphanumeric(20);
     }
 
     public boolean equals(Object o) {
