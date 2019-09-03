@@ -64,3 +64,5 @@ dist
 /patches/
 /backend/build/
 /frontend/build/
+
+/.java-version

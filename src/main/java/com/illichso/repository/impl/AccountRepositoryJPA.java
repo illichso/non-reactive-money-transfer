@@ -1,6 +1,7 @@
 package com.illichso.repository.impl;
 
 import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import com.illichso.model.entity.Account;
 import com.illichso.repository.AccountRepository;
 
@@ -11,12 +12,14 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional(value = Transactional.TxType.REQUIRES_NEW)
+
+//@Transactional(value = Transactional.TxType.REQUIRES_NEW)
 public class AccountRepositoryJPA implements AccountRepository {
 
     @Inject
     private Provider<EntityManager> entityManager;
 
+    @Inject
     public AccountRepositoryJPA() {
     }
     public Account save(Account account) {

@@ -1,10 +1,12 @@
 package com.illichso.rest;
 
+import com.illichso.model.entity.User;
 import com.illichso.service.AccountService;
 import com.illichso.service.UserService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
@@ -29,9 +31,9 @@ public class UserController {
     }
 
     @POST
-    @Path("test")
-    public String createUser(String username) {
-        userService.saveUser(null);
-        return "Hello World from User!!!";
+    @Path("create")
+    public Response createUser(String username) {
+        User user = userService.saveUser(username);
+        return Response.status(201).entity(user).build();
     }
 }

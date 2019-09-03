@@ -6,6 +6,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.ServletModule;
 import com.illichso.configuration.Application;
 import com.illichso.configuration.guice.module.AccountModule;
+//import com.illichso.configuration.guice.module.DBModule;
 import com.illichso.configuration.guice.module.DBModule;
 import com.illichso.configuration.guice.module.UserModule;
 

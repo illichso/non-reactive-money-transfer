@@ -11,24 +11,29 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional(value = Transactional.TxType.REQUIRES_NEW)
+//@Transactional(value = Transactional.TxType.REQUIRES_NEW)
 public class UserRepositoryJPA implements UserRepository {
 
-    @Inject
-    private Provider<EntityManager> entityManager;
+    protected EntityManager entityManager;
 
-    public UserRepositoryJPA() {
+    @Inject
+    public UserRepositoryJPA(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     public User save(User user) {
-        entityManager.get().getTransaction().begin();
-        entityManager.get().persist(user);
-        entityManager.get().getTransaction().commit();
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
+
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(user);
+//        entityManager.getTransaction().commit();
         return user;
     }
 
     public User findOne(int userId) {
-        TypedQuery<User> query = entityManager.get().createQuery(
+        TypedQuery<User> query = entityManager.createQuery(
                 "SELECT u FROM User u WHERE u.id = :userId",
                 User.class);
         query.setParameter("userId", userId);
@@ -36,18 +41,18 @@ public class UserRepositoryJPA implements UserRepository {
     }
 
     public void deleteAll() {
-        entityManager.get().getTransaction().begin();
+        entityManager.getTransaction().begin();
 
-        Query query = entityManager.get().createQuery(
+        Query query = entityManager.createQuery(
                 "DELETE FROM User u");
         query.executeUpdate();
 
-        entityManager.get().getTransaction().commit();
+        entityManager.getTransaction().commit();
 
     }
 
     public List<User> findAll() {
-        TypedQuery<User> query = entityManager.get().createQuery(
+        TypedQuery<User> query = entityManager.createQuery(
                 "SELECT u FROM User u",
                 User.class);
         return query.getResultList();
